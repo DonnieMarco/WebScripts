@@ -1,3 +1,12 @@
+"""
+# Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
+This lab contains a [SQL injection](https://portswigger.net/web-security/sql-injection) vulnerability in the product category filter. When the user selects a category, the application carries out a SQL query like the following:
+
+`SELECT * FROM products WHERE category = 'Gifts' AND released = 1`
+
+**Goal: display details of all products in any category, both released and unreleased.**
+"""
+
 import requests
 import sys
 import urllib3
